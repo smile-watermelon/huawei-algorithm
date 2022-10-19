@@ -34,8 +34,9 @@ import java.util.concurrent.Callable;
 public class MergeTableRecordHJ8 {
 
     public static void main(String[] args) {
-
-        m1();
+        // todo 该方法有问题
+//        m1();
+        m();
     }
 
     public static void m1() {
