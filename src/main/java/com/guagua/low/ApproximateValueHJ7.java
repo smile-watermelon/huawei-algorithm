@@ -1,4 +1,4 @@
-package com.guagua.simple;
+package com.guagua.low;
 
 import java.util.Scanner;
 

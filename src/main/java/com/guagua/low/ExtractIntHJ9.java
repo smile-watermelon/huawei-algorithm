@@ -1,4 +1,4 @@
-package com.guagua.simple;
+package com.guagua.low;
 
 import java.util.*;
 
@@ -6,18 +6,20 @@ import java.util.*;
  * @author guagua
  * @date 2022/10/19 11:23
  * @describe 提取不重复的整数
- * <p>
+ *
  * 描述
  * 输入一个 int 型整数，按照从右向左的阅读顺序，返回一个不含重复数字的新的整数。
  * 保证输入的整数最后一位不是 0 。
- * <p>
  * 数据范围： 1 <= n <= 10^{8}
- * <p>
- * 输入描述：
- * 输入一个int型整数
- * <p>
+ * 输入描述：输入一个int型整数
+ *
  * 输出描述：
  * 按照从右向左的阅读顺序，返回一个不含重复数字的新的整数
+ *
+ * 示例1
+ * 输入：9876673
+ *
+ * 输出：37689
  */
 public class ExtractIntHJ9 {
 
