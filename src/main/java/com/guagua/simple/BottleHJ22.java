@@ -1,5 +1,7 @@
 package com.guagua.simple;
 
+import java.util.Scanner;
+
 /**
  * @author guagua
  * @date 2022/10/19 18:30
@@ -36,6 +38,13 @@ package com.guagua.simple;
 public class BottleHJ22 {
 
     public static void main(String[] args) {
-
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNextInt()) {
+            int num = scanner.nextInt();
+            if (num <= 0 || num > 100) {
+                continue;
+            }
+            System.out.println(num / 2);
+        }
     }
 }
