@@ -7,12 +7,12 @@ import java.util.List;
 /**
  * @author guagua
  * @date 2022/10/20 18:31
- * @describe 包含所有变位词在字符串中的下表，纯英文小写，用数组代替哈希表
+ * @describe 包含所有变位词在字符串中的下标，纯英文小写，用数组代替哈希表
  */
 public class AnagramAllArray {
 
     public static void main(String[] args) {
-        System.out.println(findAnagrams("cbadabacg", "abc"));
+        System.out.println(findAnagrams("cbadabacg", "abc")); // [0, 5]
     }
 
     /**
@@ -29,7 +29,7 @@ public class AnagramAllArray {
         }
         int[] counts = new int[26];
         int i = 0;
-        for (; i < s2.length(); ++i) {
+        for (; i < s2.length(); i++) {
             counts[s2.charAt(i) - 'a']++;
             counts[s1.charAt(i) - 'a']--;
         }
@@ -37,11 +37,11 @@ public class AnagramAllArray {
         if (areaAllZero(counts)) {
             indices.add(0);
         }
-        for (; i < s1.length(); ++i) {
+        for (; i < s1.length(); i++) {
             counts[s1.charAt(i) - 'a']--;
             counts[s1.charAt(i - s2.length()) - 'a']++;
             if (areaAllZero(counts)) {
-                indices.add(i - s2.length() + 1);
+                indices.add(i - s2.length() + 1); // i = 7 ， 7 - 3 = 4 少了一个小标
             }
         }
         return indices;
