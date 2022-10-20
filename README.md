@@ -6,5 +6,6 @@
 - simple 简单
 - medium 中等
 - hard 较难
-- diffcult 困难
-- sort 各种排序
+- difficult 困难
+- sort 非华为几开题 各种排序
+- string 非华为交替 字符串操作
