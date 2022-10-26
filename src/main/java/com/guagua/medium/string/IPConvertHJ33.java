@@ -44,6 +44,11 @@ public class IPConvertHJ33 {
 
 
     public static void main(String[] args) {
+
+//        String[] a = "10.0.21.11".split("\\.");
+//        for (int i = 0; i <a.length; i++) {
+//            System.out.println(a[i]);
+//        }
         Scanner sc = new Scanner(System.in);
         while (sc.hasNext()) {
             String s = sc.next();
@@ -57,7 +62,8 @@ public class IPConvertHJ33 {
 
     public static long ip2num(String ip) {
         String[] iip = ip.split("\\.");
-        Long ans = (long) 0;
+        long ans = 0;
+//         256^3 即 x*256^3 +
         for (int i = 0; i < 4; i++) {
             ans = ans * 256 + Long.parseLong(iip[i]);
         }
