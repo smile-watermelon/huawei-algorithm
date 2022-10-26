@@ -21,6 +21,29 @@ public class BinaryConvertHJ5 {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNextLine()) {
+            String hex = scanner.nextLine();
+            int count = 0;
+
+            for (int i = 0; i < hex.length() - 2; i++) {
+                char tc = hex.charAt(i + 2);
+                int t = 0;
+                if (tc >= '0' && tc <= '9') {
+                    t = tc - '0';
+                } else if (tc >= 'A' && tc <= 'F') {
+                    t = tc - 'A' + 10;
+                } else if (tc >= 'a' && tc <= 'f') {
+                    t = tc - 'a' + 10;
+                }
+                count += t * Math.pow(16, hex.length() - i - 3);
+            }
+            System.out.println(count);
+        }
+//        m1();
+    }
+
+    private static void m1() {
+        Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()) {
             String hex = scanner.nextLine();
             int i = Integer.parseInt(hex.trim().substring(2), 16);
