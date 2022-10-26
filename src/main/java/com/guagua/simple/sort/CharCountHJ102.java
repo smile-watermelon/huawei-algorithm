@@ -25,7 +25,7 @@ public class CharCountHJ102 {
             }
 
             StringBuilder sb = new StringBuilder("");
-            while (max!=0) {
+            while (max != 0) {
                 for (int i = 0; i < charCount.length; i++) {
                     if (charCount[i] == max)
                         sb.append((char) (i));
