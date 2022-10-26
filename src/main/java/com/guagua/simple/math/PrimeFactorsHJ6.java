@@ -1,4 +1,4 @@
-package com.guagua.simple.sort;
+package com.guagua.simple.math;
 
 import java.util.Scanner;
 
