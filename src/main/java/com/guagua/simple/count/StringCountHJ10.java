@@ -23,7 +23,7 @@ public class StringCountHJ10 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()) {
-            int[] map = new int[127];
+            int[] map = new int[128];
             String str = scanner.nextLine();
             int count = 0;
 

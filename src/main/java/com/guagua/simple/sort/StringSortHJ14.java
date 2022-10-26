@@ -45,6 +45,33 @@ import java.util.*;
 public class StringSortHJ14 {
 
     public static void main(String[] args) {
+//        m1();
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNext()) {
+            int row = scanner.nextInt();
+            scanner.nextLine();
+            String[] arr = new String[row];
+            for (int i = 0; i < row; i++) {
+                arr[i] = scanner.nextLine();
+            }
+            String tmp;
+            for (int i = 0; i < arr.length; i++) {
+                for (int j = 0; j < arr.length - i - 1; j++) {
+                    if (arr[j].compareTo(arr[j + 1]) > 0) {
+                        tmp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = tmp;
+                    }
+                }
+            }
+
+            for (int i = 0; i < arr.length; i++) {
+                System.out.println(arr[i]);
+            }
+        }
+    }
+
+    private static void m1() {
         Scanner scanner = new Scanner(System.in);
         int row = scanner.nextInt();
         ArrayList<String> list = new ArrayList<>(row);
