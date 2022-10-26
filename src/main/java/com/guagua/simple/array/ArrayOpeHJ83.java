@@ -120,11 +120,11 @@ public class ArrayOpeHJ83 {
             int y1 = scanner.nextInt();
             int x2 = scanner.nextInt();
             int y2 = scanner.nextInt();
-            System.out.println(((Math.max(x1, x2) >= m) || (Math.max(y1, y2) > n)) ? -1 : 0);
+            System.out.println(((Math.max(x1, x2) >= m) || (Math.max(y1, y2) >= n)) ? -1 : 0);
             int x = scanner.nextInt();
-            System.out.println(x > m || (m + 1) > 9 ? -1 : 0);
+            System.out.println(x >= m || (m + 1) > 9 ? -1 : 0);
             int y = scanner.nextInt();
-            System.out.println(y > n || (y + 1) > 9 ? -1 : 0);
+            System.out.println(y >= n || (y + 1) > 9 ? -1 : 0);
             x = scanner.nextInt();
             y = scanner.nextInt();
             System.out.println((x >= m || y >= n) ? -1 : 0);

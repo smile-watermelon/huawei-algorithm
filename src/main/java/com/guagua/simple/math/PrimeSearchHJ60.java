@@ -37,7 +37,8 @@ public class PrimeSearchHJ60 {
 
     public static void main(String[] args) {
 
-        System.out.println(Math.sqrt(4));
+//        System.out.println(Math.sqrt(4));
+//        System.out.println(Math.sqrt(7));
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()) {
             int num = scanner.nextInt();
@@ -58,7 +59,7 @@ public class PrimeSearchHJ60 {
 
     // 判断是否素数
     private static boolean isPrime(int num) {
-        for (int i = 2; i <= Math.sqrt(num); i++) {
+        for (int i = 2; i <= Math.sqrt(num); i++) { // todo 这里为什么要开根
             if (num % i == 0) {
                 return false;
             }
