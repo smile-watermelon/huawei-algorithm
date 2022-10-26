@@ -26,6 +26,25 @@ public class IntBinaryNumHJ15 {
 //        [0,1,2,3]
 //        m1();
 //        m2();
+//        m3();
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNextInt()) {
+            int num = scanner.nextInt();
+            int count = 0;
+
+            // 5 101
+            while (num > 0) {
+                if ((num & 1) == 1) {
+                    count++;
+                }
+                num >>>= 1;
+            }
+
+            System.out.println(count);
+        }
+    }
+
+    private static void m3() {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextInt()) {
             int num = scanner.nextInt();

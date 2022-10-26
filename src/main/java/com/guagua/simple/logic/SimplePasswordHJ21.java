@@ -41,7 +41,9 @@ public class SimplePasswordHJ21 {
             for (int i = 0; i < plain.length(); i++) {
                 char c = plain.charAt(i);
                 if (c >= 'A' && c < 'Z') { // 判断是不是大写
-                    char newChar= (char) (c + 32 + 1);
+//                    char newChar = (char) (c +32 + 1);
+                    char newChar = (char) (c - 'A' + 'a' + 1);
+
                     builder.append(newChar);
 
                 } else if (c == 'Z') {
