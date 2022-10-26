@@ -56,7 +56,9 @@ public class StringSortHJ26 {
             }
         }
         // 用小写排序为了保证排序后字符大小写的顺序
-        letters.sort(Comparator.comparingInt(Character::toLowerCase));
+        letters.sort((v1, v2) -> {
+            return Character.toLowerCase(v1) - Character.toLowerCase(v2);
+            });
 
         StringBuilder result = new StringBuilder();
         for (int i = 0, j = 0; i < str.length(); i++) {
