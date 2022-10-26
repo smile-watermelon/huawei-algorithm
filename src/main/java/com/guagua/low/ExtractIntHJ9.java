@@ -42,7 +42,7 @@ public class ExtractIntHJ9 {
             while (i != 0) {
                 int temp =  i % 10;
                 if (set.add(temp)) {
-                    System.out.println(temp);
+                    System.out.print(temp);
                 }
                 i /=10;
             }
