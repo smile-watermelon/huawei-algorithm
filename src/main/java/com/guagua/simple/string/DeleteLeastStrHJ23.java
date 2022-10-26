@@ -27,6 +27,9 @@ import java.util.concurrent.Callable;
 public class DeleteLeastStrHJ23 {
 
     public static void main(String[] args) {
+
+//        String a = "abca";
+//        System.out.println(a.replace('a', 'd'));
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()) {
             String str = scanner.next();
