@@ -1,7 +1,10 @@
 package com.guagua.medium.string;
 
+import sun.net.www.content.text.plain;
+
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -38,7 +41,49 @@ import java.util.Scanner;
 public class StringEncryptHJ36 {
 
     public static void main(String[] args) {
-        System.out.println((int) 'N');
+//        m1();
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNextLine()) {
+            String key = scanner.nextLine().toUpperCase();
+            String plain = scanner.nextLine();
+            LinkedHashSet<Character> set = new LinkedHashSet<>();
+            for (int i = 0; i < key.length(); i++) {
+                set.add(key.charAt(i));
+            }
+
+            if (set.size() < 26) {
+                int k = 0;
+                while (k < 26) {
+                    set.add((char) ('A' + k));
+                    k++;
+                }
+            }
+//            for (Character c : set) {
+//                System.out.print(c + " ");
+//            }
+
+            List<Character> list = new ArrayList<>(set);
+            StringBuilder res = new StringBuilder();
+            for (int i = 0; i < plain.length(); i++) {
+                if (plain.charAt(i) == ' ') {
+                    res.append(plain.charAt(i));
+                }else if (plain.charAt(i) < 'a') {
+                    int n = plain.charAt(i) - 'A';
+                    Character character = list.get(n);
+                    res.append(character);
+                } else {
+                    int n = plain.charAt(i) - 'a';
+                    char c = (char) (list.get(n) + 'a' - 'A');
+                    res.append(c);
+                }
+            }
+
+            System.out.println(res);
+        }
+    }
+
+    private static void m1() {
+//        System.out.println((int) 'N');
         Scanner sc = new Scanner(System.in);
         while (sc.hasNext()) {
             String s1 = sc.nextLine().toUpperCase();
@@ -54,6 +99,9 @@ public class StringEncryptHJ36 {
                 char a = (char) ('A' + k);
                 set.add(a);
                 k++;
+            }
+            for (Character character : set) {
+                System.out.println(character);
             }
             ArrayList<Character> list = new ArrayList<>(set);
             StringBuffer sb = new StringBuffer();

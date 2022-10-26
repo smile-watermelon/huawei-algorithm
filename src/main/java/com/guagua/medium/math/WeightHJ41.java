@@ -57,38 +57,40 @@ public class WeightHJ41 {
                 String nString = in.nextLine();
                 int n = Integer.parseInt(nString);
                 String[] weightsSting = in.nextLine().split(" ");
-                String[] numsSting = in.nextLine().split(" ");
+                String[] numsStr = in.nextLine().split(" ");
+
+                // 砝码数量
+                int[] nums = new int[n];
+                for (int i = 0; i < numsStr.length; i++) {
+                    nums[i] = Integer.parseInt(numsStr[i]);
+                }
 
                 // 各砝码重量
                 int[] weights = new int[n];
                 for (int i = 0; i < weightsSting.length; i++) {
                     weights[i] = Integer.parseInt(weightsSting[i]);
                 }
-                // 砝码数量
-                int[] nums = new int[n];
-                for (int i = 0; i < numsSting.length; i++) {
-                    nums[i] = Integer.parseInt(numsSting[i]);
-                }
+
                 // 所有砝码重量组合情况set
                 HashSet<Integer> hashSet = new HashSet<>();
                 //由示例可知，0重量也属于一种情况
                 hashSet.add(0);
                 for (int i = 0; i < n; i++) { //每一种砝码
                     // 记录每一种砝码的重量总分类
-                    HashSet<Integer> thisTimeNeedAddSet = new HashSet<>();
+                    HashSet<Integer> category = new HashSet<>();
                     // 砝码数量
                     for (int k = 1; k <= nums[i]; k++) {
                         // 砝码数量组合
-                        int singleTimeAddWeight = weights[i] * k;
+                        int w = weights[i] * k;
                         // 添加当前重量
-                        thisTimeNeedAddSet.add(singleTimeAddWeight);
+                        category.add(w);
                         for (Integer weight : hashSet) {
                             // 之前之前砝码 和当前砝码的组合
-                            thisTimeNeedAddSet.add(weight + singleTimeAddWeight);
+                            category.add(weight + w);
                         }
                     }
                     // 添加当前砝码种类
-                    hashSet.addAll(thisTimeNeedAddSet);
+                    hashSet.addAll(category);
                 }
                 System.out.println(hashSet.size());
             }
