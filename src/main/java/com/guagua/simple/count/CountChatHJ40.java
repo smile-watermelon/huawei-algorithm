@@ -1,5 +1,6 @@
 package com.guagua.simple.count;
 
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -32,6 +33,34 @@ import java.util.regex.Pattern;
  */
 public class CountChatHJ40 {
     public static void main(String[] args) {
+//        m1();
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNextLine()) {
+            String str = scanner.nextLine();
+            int c = 0;
+            int blank = 0;
+            int num = 0;
+            int other = 0;
+            for (int i = 0; i < str.length(); i++) {
+                String s = String.valueOf(str.charAt(i));
+                if (Pattern.compile("[A-Za-z]").matcher(s).find()) {
+                    c++;
+                } else if (Pattern.compile("[0-9]").matcher(s).find()) {
+                    num++;
+                } else if (Pattern.compile(" ").matcher(s).find()) {
+                    blank++;
+                }
+            }
+            other = str.length() - c - blank - num;
+            System.out.println(c);
+            System.out.println(blank);
+            System.out.println(num);
+            System.out.println(other);
+
+        }
+    }
+
+    private static void m1() {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
             String str=scanner.nextLine();
@@ -44,6 +73,5 @@ public class CountChatHJ40 {
             String s3=s2.replaceAll("[0-9]+", "");
             System.out.println(s2.length()-s3.length()+"\n"+s3.length());
         }
-
     }
 }
