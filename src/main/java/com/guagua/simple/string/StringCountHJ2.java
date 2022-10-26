@@ -20,18 +20,17 @@ public class StringCountHJ2 {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String line;
-        String c;
 
         while (scanner.hasNextLine()) {
-            line = scanner.nextLine();
-            c = scanner.nextLine();
+            String line = scanner.nextLine();
+            String c = scanner.nextLine();
 
-            char[] chars = line.toCharArray();
+            line = line.toLowerCase();
+            c = c.toLowerCase();
+
             int count = 0;
-            for (int i = 0; i < chars.length; i++) {
-                if (String.valueOf(chars[i]).toLowerCase().trim().equals(
-                        c.trim().toLowerCase())) {
+            for (int i = 0; i < line.length(); i++) {
+                if (line.charAt(i) == c.charAt(0)) {
                     count++;
                 }
             }

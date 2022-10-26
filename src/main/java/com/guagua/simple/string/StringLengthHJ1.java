@@ -16,9 +16,9 @@ public class StringLengthHJ1 {
 
     public static void main(String[] args) {
         // 测试
-        String s = "  h  ";
-        System.out.println(s.length());
-        System.out.println(s.trim().length());
+//        String s = "  h  ";
+//        System.out.println(s.length());
+//        System.out.println(s.trim().length());
 
         Scanner scanner = new Scanner(System.in);
         int length = 5000;
