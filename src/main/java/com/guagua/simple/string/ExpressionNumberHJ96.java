@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
  * 示例1
  * 输入：
  * Jkdi234klowe90a3
- * <p>
+ * <p>17
  * 输出：
  * Jkdi*234*klowe*90*a*3*
  */

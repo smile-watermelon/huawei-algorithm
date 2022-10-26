@@ -1,8 +1,7 @@
 package com.guagua.medium.string;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 
 /**
  * @author guagua
@@ -14,31 +13,36 @@ import java.io.InputStreamReader;
 public class CoordinateMoveHJ17 {
 
     public static void main(String[] args) throws IOException {
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        String[] in = bf.readLine().split(";");
-        int x = 0;
-        int y = 0;
-        for(String s : in){
-            // 不满足题目给定坐标规则
-            if(!s.matches("[WASD][0-9]{1,2}")){
-                continue;
+//        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        Scanner scanner = new Scanner(System.in);
+//        String[] in = bf.readLine().split(";");
+        while (scanner.hasNextLine()) {
+            String[] str = scanner.nextLine().split(";");
+            int x = 0;
+            int y = 0;
+            for(String s : str){
+                // 不满足题目给定坐标规则
+                if(!s.matches("[WASD][0-9]{1,2}")){
+                    continue;
+                }
+                int val = Integer.parseInt(s.substring(1));
+                switch(s.charAt(0)){
+                    case 'W':
+                        y += val;
+                        break;
+                    case 'S':
+                        y -= val;
+                        break;
+                    case 'A':
+                        x -= val;
+                        break;
+                    case 'D':
+                        x += val;
+                        break;
+                }
             }
-            int val = Integer.parseInt(s.substring(1));
-            switch(s.charAt(0)){
-                case 'W':
-                    y += val;
-                    break;
-                case 'S':
-                    y -= val;
-                    break;
-                case 'A':
-                    x -= val;
-                    break;
-                case 'D':
-                    x += val;
-                    break;
-            }
+            System.out.println(x+","+y);
         }
-        System.out.println(x+","+y);
+
     }
 }
