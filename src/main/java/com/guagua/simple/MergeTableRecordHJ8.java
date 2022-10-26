@@ -52,8 +52,8 @@ public class MergeTableRecordHJ8 {
                 table.put(key, value);
             }
         }
-        for (Integer key : table.keySet()) {
-            System.out.println( key + " " + table.get(key));
+        for (Map.Entry<Integer, Integer> entry : table.entrySet()) {
+            System.out.println(entry.getKey() + " " + entry.getValue());
         }
     }
 
@@ -66,7 +66,7 @@ public class MergeTableRecordHJ8 {
 
             int index = scanner.nextInt();
             int value = scanner.nextInt();
-            System.out.println("--" +index + " " );
+//            System.out.println("--" +index + " " );
             boolean flag = false;
             for (int j = 0; j < table.length; j++) {
                 if (table[j][0] == index && !flag) { // 索引存在修改值
