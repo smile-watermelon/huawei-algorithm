@@ -49,10 +49,12 @@ public class PerfectNumberHJ56 {
             for (int t = 6; t <= n; t++) {
                 int sum = 0;
                 //统计因数的和，计数到该数的1/2即可, 最大真因数不会超过 t 的 1/2
+                // 当前因数的和是 因数一半 之前因数之和
                 for (int i = 1; i <= t / 2; i++) {
                     if (t % i == 0)
                         sum += i;
                 }
+                // 之前因数之和== 当前因子 是真因子
                 if (sum == t)
                     count++;
             }

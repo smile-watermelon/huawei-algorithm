@@ -1,5 +1,7 @@
 package com.guagua.simple;
 
+import com.guagua.hard.Test;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -47,6 +49,27 @@ import java.util.Scanner;
 public class LinkedListHJ51 {
 
     public static void main(String[] args) {
+//        m1();
+        // 练习
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNextInt()) {
+            int size = scanner.nextInt();
+            ListNode head = new ListNode();
+            ListNode tmp = head;
+            for (int i = 0; i < size; i++) {
+                tmp.next = new ListNode(scanner.nextInt(), null);
+                tmp = tmp.next;
+            }
+            int n = scanner.nextInt();
+            ListNode target;
+            for (target = head.next; size > n; size--) {
+                target = target.next;
+            }
+            System.out.println(target == null ? 0:target.val);
+        }
+    }
+
+    private static void m1() {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextInt()) {
             int size = scanner.nextInt();
