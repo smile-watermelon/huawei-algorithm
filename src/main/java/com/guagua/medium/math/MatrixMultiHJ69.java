@@ -94,7 +94,7 @@ public class MatrixMultiHJ69 {
 //            System.out.println(matrix2[0].length);
 //            System.out.println(matrix2.length);
             for (int i = 0; i < x; i++) {
-                for (int j = 0; j < x; j++) {
+                for (int j = 0; j < z; j++) {
                     for (int k = 0; k < y; k++) {
                         result[i][j] += matrix1[i][k] * matrix2[k][j];
                     }
