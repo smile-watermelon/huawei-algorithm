@@ -38,6 +38,31 @@ import java.util.Scanner;
 public class DNAHJ63 {
 
     public static void main(String[] args) {
+//        m1();
+
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNext()) {
+            String str = scanner.nextLine();
+            int subLen = scanner.nextInt();
+
+            String result = "";
+            int len = 0;
+
+            for (int i = 0; i < str.length() - subLen + 1; i++) {
+                String subStr = str.substring(i, subLen + i);
+                String s = subStr.replaceAll("[GC]", "");
+                int diff = subStr.length() - s.length();
+                if (diff > len) {
+                    len = diff;
+                    result = subStr;
+                }
+            }
+            System.out.println(result);
+        }
+
+    }
+
+    private static void m1() {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()) {
             String DNAStr = scanner.next();
@@ -48,7 +73,7 @@ public class DNAHJ63 {
             // DNAStr.length() - subLen + 1 因为是截取到字符串最后一个位置
             // 为了防止越界这里需要 减去子串的长度 例如：ACGT 2，最后一组是GT G下标为2，2 +2 = 4 是字符串的长度
             for (int i = 0; i < DNAStr.length() - subLen + 1; i++) {
-                if (subLen + i < DNAStr.length()) {
+//                if (subLen + i < DNAStr.length()) {
                     String subStr = DNAStr.substring(i, subLen + i);
                     String repStr = subStr.replaceAll("[GC]", "");
                     int diff = subLen - repStr.length();
@@ -57,12 +82,11 @@ public class DNAHJ63 {
                         list.clear();
                         list.add(subStr);
                     }
-                }
+//                }
 
             }
             System.out.println(list.get(0));
         }
-
     }
 
 

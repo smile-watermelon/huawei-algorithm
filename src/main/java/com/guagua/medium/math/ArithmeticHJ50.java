@@ -31,6 +31,69 @@ import java.util.regex.Pattern;
 public class ArithmeticHJ50 {
 
     public static void main(String[] args) {
+//        m1();
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNextLine()) {
+            String str = scanner.nextLine();
+            String s = str.replace("[", "(")
+                    .replace("{", "(")
+                    .replace("]", ")")
+                    .replace("}", ")");
+
+            System.out.println(resolve1(s));
+        }
+    }
+
+    private static int resolve1(String s) {
+        Stack<Integer> stack = new Stack<>();
+        char[] chars = s.toCharArray();
+        int n = s.length();
+        int number = 0;
+        char sign = '+';
+
+        for (int i = 0; i < n; i++) {
+            char ch = chars[i];
+            if (ch == ' ') {
+                continue;
+            }
+            if (Character.isDigit(ch)) {
+                number = ch - '0' + number * 10;
+            }
+            if (ch == '(') {
+                int j = i + 1;
+                int count = 1;
+                while (count > 0) {
+                    if (chars[j] == ')') count--;
+                    if (chars[j] == '(') count++;
+                    j++;
+                }
+                number = resolve1(s.substring(i + 1, j - 1));
+                i = j - 1;
+            }
+            if (!Character.isDigit(ch) || i == n - 1) {
+                if (sign == '+') {
+                    stack.push(number);
+                } else if (sign == '-') {
+                    stack.push(-1 * number);
+                } else if (sign == '*') {
+                    stack.push(stack.pop() * number);
+                } else if (sign == '/') {
+                    stack.push(stack.pop() / number);
+                }
+                sign = ch;
+                number = 0;
+            }
+
+        }
+        int sum = 0;
+        if (!stack.isEmpty()) {
+            sum += stack.pop();
+        }
+
+        return sum;
+    }
+
+    private static void m1() {
         Scanner sc = new Scanner(System.in);
         String s = sc.nextLine();
         //将其他括号，替换成小括号
