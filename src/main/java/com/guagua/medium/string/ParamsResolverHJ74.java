@@ -68,7 +68,7 @@ public class ParamsResolverHJ74 {
                 char c = nextLine.charAt(i);
 
                 if (String.valueOf(c).equals("\"")) { // 双引号是成对出现的，作为一个开关，防止在双引号里有空格导致错误
-                    flag = flag ? false : true;
+                    flag = !flag;
                     continue;
                 }
 

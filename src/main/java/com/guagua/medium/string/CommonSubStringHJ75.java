@@ -46,20 +46,14 @@ public class CommonSubStringHJ75 {
             int smallLen = small.length();
             int bigLen = big.length();
             int len = 0;
-            int[] index = new int[2];
             for (int i = 0; i < smallLen; i++) {
                 for (int j = smallLen; j > i; j--) {
                     if (big.contains(small.substring(i, j))) {
                         len = Math.max(j - i, len);
-//                        index[0] = i;
-//                        index[1] = j;
-//                        System.out.println(len);
                         break;
                     }
                 }
             }
-//            System.out.println(small.substring(index[0], index[1]));
-//            System.out.println(index[1] - index[0]);
             System.out.println(len);
         }
     }
