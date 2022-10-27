@@ -37,24 +37,33 @@ public class MaxLengthSubStringHJ65 {
         sc.close();
     }
 
+    /**
+     * 遍历小子串，从最长的地方开始遍历
+     * 判断大子串是否包含，如果包含直接break
+     *
+     * @param str1
+     * @param str2
+     * @return
+     */
     public static String comStr(String str1, String str2) {
         String small = str1.length() < str2.length() ? str1 : str2;
         String big = str1.length() < str2.length() ? str2 : str1;
         int len = 0;
-        int[] index = new int[2];
+        int start = 0;
+        int end = 0;
         for (int i = 0; i < small.length(); i++) {
             // substring是截取从i到j-1的字符，j-i是数量所以需要+1，那么直接取small.length()的长度
             for (int j = small.length(); j > i; j--) {
                 if (big.contains(small.substring(i, j)) && j - i > len) { // 双指针从后往前遍历，只要出现j -i > len 就是最大子串
                     len = j - i;
                     // 保存最大的公共字符串的指针下标
-                    index[0] = i;
-                    index[1] = j;
+                    start = i;
+                    end = j;
                     break;
                 }
             }
         }
-        return small.substring(index[1], index[0]);
+        return small.substring(start, end);
     }
 
 }
