@@ -7,14 +7,14 @@ package com.guagua.search;
  * 1、判断中间是不是等于目标值，相等直接返回
  * 2、如果目标 值大于中间值，说明目标值在中间值的右侧，修改 start = middle + 1
  * 3、如果目标值小于中间值，说明目标值是在中间值的左侧，修改 end = middle - 1
- *
+ * <p>
  * 时间复杂度是 O(log(2)(N))
  */
 public class MyBinarySearch {
 
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        int target = 1;
+        int target = 11;
 
         int index = binarySearch(arr, target);
         System.out.println(index);
@@ -27,7 +27,7 @@ public class MyBinarySearch {
         int middle;
 
         while (start <= end) {
-            middle = start + ((end - start) >>> 1);
+            middle = (end + start) >>> 1;
             if (arr[middle] == target) {
                 return middle;
             }
