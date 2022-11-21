@@ -12,7 +12,32 @@ import java.util.List;
 public class AnagramAllArray {
 
     public static void main(String[] args) {
-        System.out.println(findAnagrams("cbadabacg", "abc")); // [0, 5]
+        String s = "cbadabacg";
+        String t = "abc";
+        System.out.println(findAnagrams(s, t)); // [0, 5]
+//        System.out.println(isAnagrams("anagram", "nagaram"));
+    }
+
+    /**
+     * 判断 字符串 t 是不是 字符串 s 的变位词
+     *
+     * @return
+     */
+    public static boolean isAnagrams(String s, String t) {
+        int[] alpha = new int[26];
+        if (s.length() != t.length()) {
+            return false;
+        }
+        for (int i = 0; i < s.length(); i++) {
+            alpha[s.charAt(i) - 'a']++;
+            alpha[t.charAt(i) - 'a']--;
+        }
+        for (int i = 0; i < alpha.length; i++) {
+            if (alpha[i] != 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
