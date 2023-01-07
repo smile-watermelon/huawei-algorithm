@@ -9,29 +9,50 @@ import java.util.Random;
  */
 public class IntSort {
 
+    public static int[] random(int n) {
+        int[] result = new int[n];
+        Random random = new Random();
+        for (int i = 0; i < n; i++) {
+            result[i] = random.nextInt(10);
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
-        int[] nums = {1, 4, 21, 10, 11, 6};
+//        int[] nums = {1, 4, 21, 10, 11, 6};
+        int[] nums = {5, 4, 3, 2, 1};
 
-        int[] maopao = maopao(nums);
-        for (int i = 0; i < maopao.length; i++) {
-            System.out.println(maopao[i]);
-        }
-        System.out.println("---------");
-        int[] quick = quick(nums);
-        for (int i : quick) {
-            System.out.println(i);
+
+//        int[] maopao = maopao(nums);
+//        for (int i = 0; i < maopao.length; i++) {
+//            System.out.println(maopao[i]);
+//        }
+
+//        int[] random = random(10);
+        System.out.println("--------------");
+//        int[] select = select(random);
+
+        int[] select = select(nums);
+        for (int i = 0; i < select.length; i++) {
+            System.out.println(select[i]);
         }
 
-        System.out.println("----------");
-        int[] count = count(nums);
-        for (int i : count) {
-            System.out.println(i);
-        }
-        System.out.println("----------");
-        int[] merge = merge(nums);
-        for (int i : merge) {
-            System.out.println(i);
-        }
+//        System.out.println("---------");
+//        int[] quick = quick(nums);
+//        for (int i : quick) {
+//            System.out.println(i);
+//        }
+//
+//        System.out.println("----------");
+//        int[] count = count(nums);
+//        for (int i : count) {
+//            System.out.println(i);
+//        }
+//        System.out.println("----------");
+//        int[] merge = merge(nums);
+//        for (int i : merge) {
+//            System.out.println(i);
+//        }
     }
 
     /**
@@ -138,22 +159,82 @@ public class IntSort {
 
     /**
      * 冒泡排序
+     * 本质是取出第一个元素挨个和后面的元素进行比较，每次只排好"一个"数
+     * 内层一次循环结束，nums 最右边的数是排好序的，所以内层循环的条件是 j < nums.length - 1 - i;
+     * 举例：nums = [5,4,3,2,1]
+     * 内循环
+     * 1、第一次循环：第一个数 5 和 4 比较，5 > 4 交换位置，nums[0] = 4, nums[1] = 5;
+     * 2、第二次循环：第一个数 5 和 3 比较，5 > 3 交换位置，num[0] = 4, nums[1] = 3, nums[2] = 5;
+     *      ... 依次类推，直到 nums[j] 和 nums[j + 1] （数组最后一个元素）比较交换位置，此时数组如下：
+     *      nums[0] = 4, nums[1] = 3, nums[2] = 2, nums[3] = 1; nums[4] = 5;
+     *
+     * 3、第一个数 5 排好序
+     * 4、开启外层下一轮循环，重复步骤1，2，3
+     * <p>
+     * 时间复杂度为：O（n²）
      *
      * @param nums
      */
     private static int[] maopao(int[] nums) {
-        int t;
+        int count = 0;
         for (int i = 0; i < nums.length - 1; i++) {
             for (int j = 0; j < nums.length - 1 - i; j++) {
                 if (nums[j] > nums[j + 1]) {
-                    t = nums[j];
+                    int t = nums[j];
                     nums[j] = nums[j + 1];
                     nums[j + 1] = t;
+                    count++;
                 }
             }
         }
+        System.out.println("n = " + nums.length + "，循环次数=" + count);
+
         return nums;
     }
 
+    /**
+     * 选择排序
+     * 本至是从数组中挑出一个数，和数组的的每个数做比较，得到最小的那个数，然后进行位置交换
+     * 内层循环一次后，nums 最左边的数是排好序的，所以内层循环的 初始是 j = i + 1
+     * 举例：nums = [5,4,3,2,1]
+     * 内循环：
+     * 1、第一次内循环：初始 i=0，m = 0, j = i + 1 = 1, num[m] = 5，nums[j] = 4，nums[m] > nums[j] 得到小于数字5 nums数组中对应下标为 1
+     * 2、第二次内循环：初始 i=0，m = 0, j = 2, num[m] = 5,  nums[j] = 3, nums[m] > nums[j] 得到小于数字5 nums数组中对应下标为 2
+     *      将 m 的值 设置为值较小的nums 下标
+     *      ...继续内层循环，直到找到比 m = i = 0 的数字小的数组下标，此时数组如下：
+     *      nums[0] = 1, nums[1] = 4, nums[2] = 3, nums[3] = 2, nums[4] = 5;
+     *
+     * 4、交换两个下标位置的数据
+     * 5、开启下一轮外层循环，因为数组最左边的数经过第一轮循环已经排好序，所以 for 循环的初始条件为 j = i + 1
+     * <p>
+     * 时间复杂度为：O（n²）
+     */
+    private static int[] select(int[] nums) {
+        int count = 0;
+        for (int i = 0; i < nums.length; i++) {
+            int m = i;
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[m] > nums[j]) {
+                    m = j;
+                    count++;
+                }
+            }
+            int tmp = nums[i];
+            nums[i] = nums[m];
+            nums[m] = tmp;
+
+        }
+        System.out.println("n = " + nums.length + "，循环次数=" + count);
+        return nums;
+    }
+
+    /**
+     * 插入排序
+     * 本质是从
+     */
+    private static int[] insert(int[] nums) {
+
+        return nums;
+    }
 
 }
