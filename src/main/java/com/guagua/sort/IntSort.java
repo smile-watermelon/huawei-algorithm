@@ -1,6 +1,9 @@
 package com.guagua.sort;
 
+import com.guagua.util.SortUtils;
+
 import java.util.Random;
+import java.util.regex.Pattern;
 
 /**
  * @author guagua
@@ -9,17 +12,6 @@ import java.util.Random;
  */
 public class IntSort {
 
-    public static int[] random(int n) {
-        System.out.println("--------随机数-------");
-        int[] result = new int[n];
-        Random random = new Random();
-        for (int i = 0; i < n; i++) {
-            result[i] = random.nextInt(10);
-            System.out.println(result[i]);
-        }
-        System.out.println("---------------");
-        return result;
-    }
 
     public static void main(String[] args) {
 //        int[] nums = {1, 4, 21, 10, 11, 6};
@@ -31,7 +23,7 @@ public class IntSort {
 //            System.out.println(maopao[i]);
 //        }
 
-//        int[] random = random(10);
+//        int[] random = SortUtils.random(10);
 //        System.out.println("--------------");
 //        int[] select = select(random);
 
@@ -41,16 +33,19 @@ public class IntSort {
 //        }
 
 //        System.out.println("-----------");
-//        int[] insert = insert(random(10));
+//        int[] insert = insert(SortUtils.random(10));
 //        for (int i = 0; i < insert.length; i++) {
 //            System.out.println(insert[i]);
 //        }
 
-        System.out.println("-----------");
-        int[] shell = shell(new int[]{6, 5, 4, 3, 2, 1});
-        for (int i = 0; i < shell.length; i++) {
-            System.out.println(shell[i]);
-        }
+//        System.out.println("-----------");
+//        int[] shell = shell(new int[]{6, 5, 4, 3, 2, 1});
+//        for (int i = 0; i < shell.length; i++) {
+//            System.out.println(shell[i]);
+//        }
+
+
+
 
 
 //        System.out.println("---------");
@@ -103,6 +98,7 @@ public class IntSort {
 
         return src;
     }
+
 
     /**
      * 计数排序
@@ -286,14 +282,14 @@ public class IntSort {
      * 希尔排序是对插入排序的一种改进
      * 本质是将数组按照 h 的跨度进行分割，分割后将距离为 h 的数组值进行交换，ToDo 交换是根据跨度 h 往前移动的。
      * 简单说分两步：
-     *  1、让数据值大的尽量往后排，减少和前面数据的位置交换次数（减少了内存的操作）
-     *  2、缩小 跨度 h 用插入排序进行，h 跨度内的排序
-     *
+     * 1、让数据值大的尽量往后排，减少和前面数据的位置交换次数（减少了内存的操作）
+     * 2、缩小 跨度 h 用插入排序进行，h 跨度内的排序
+     * <p>
      * 举例：nums = [6,5,4,3,2,1]
-     *  1、首先将数组按照 h = 3 * h + 1 计算得到跨度 h = 4；
-     *  2、外层循环初始条件为：i = h = 4, n = 6
-     *      2.1、内层第一次循环：循环初始条件为：j = i = 4, h = 4, j >= h，比较 nums[j] = 2，nums[j-h] = 6, ToDo 6和2之间的跨度为4
-     *          2 < 6，交换位置
+     * 1、首先将数组按照 h = 3 * h + 1 计算得到跨度 h = 4；
+     * 2、外层循环初始条件为：i = h = 4, n = 6
+     * 2.1、内层第一次循环：循环初始条件为：j = i = 4, h = 4, j >= h，比较 nums[j] = 2，nums[j-h] = 6, ToDo 6和2之间的跨度为4
+     * 2 < 6，交换位置
      *          todo 此时 nums 如下：
      *          nums[0] = 2, nums[1] = 5, nums[2] = 4, nums[3] = 3, nums[4] = 6, nums[5] = 1
      *      内层循环结束后 j = j - h = 0; // todo 退出内层循环
@@ -310,22 +306,21 @@ public class IntSort {
      *      4.2、第二次外循环条件为：i++ 后 i = 2
      *          第一次内循环条件为：j = i = 2, j >= h (h = 1), 比较 nums[j] = 4 和 nums[j-h = 1] = 2 // todo 4 不小于 2，第一次内循环结束
      *          第二次内循环条件为：j = i = 1, j >= h (h = 1), 比较 nums[j] = 2 和 nums[j-h = 0] = 1 // todo 2 不小于 1，第二次内循环结束
-     *      4.2、第二次外循环条件为：i++ 后 i = 3
+     *      4.3、第三次外循环条件为：i++ 后 i = 3
      *          第一次内循环条件为：j = i = 3, j >= h (h = 1), 比较 nums[j] = 3 和 nums[j-h = 2] = 4 // todo 3 小于 4，进行交换，跨度为 1
      *          todo 此时 nums 如下：
      *          nums[0] = 1, nums[1] = 2, nums[2] = 3, nums[3] = 4, nums[4] = 6, nums[5] = 5
      *          ToDo 之后和4.2一样，根据跨度为1，"逆向" 依次比较 j 前面的数，这里大家应该可以看到和插入排序的操作是没什么区别的，
      *          todo 因为不满足交换条件,所以内层循环结束
-     *      4、3、第二次外循环条件为：i++ 后 i = 4
+     *      4、4、第四次外循环条件为：i++ 后 i = 4
      *          第一次内循环条件为：j = i = 4, j >= h (h = 1), 比较 nums[j] = 6 和 nums[j-h = 3] = 4 // todo 6 不小于 4 后续循环也不会满足交换条件
      *          循环退出
-     *      4、3、第二次外循环条件为：i++ 后 i = 5
+     *      4、5、第五次外循环条件为：i++ 后 i = 5
      *          第一次内循环条件为：j = i = 5, j >= h (h = 1), 比较 nums[j] = 5 和 nums[j-h = 3] = 6 // todo 5 小于 6，进行交换，跨度为 1
      *          todo 此时 nums 如下：
      *          nums[0] = 1, nums[1] = 2, nums[2] = 3, nums[3] = 4, nums[4] = 5, nums[5] = 6
-     *
-     *          排序完成，后续的循环不满足交换条件
-     *
+     * <p>
+     * 排序完成，后续的循环不满足交换条件
      *
      * @param nums
      * @return
