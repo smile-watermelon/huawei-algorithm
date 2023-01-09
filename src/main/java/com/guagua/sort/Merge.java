@@ -15,7 +15,8 @@ public class Merge {
 
     public static void main(String[] args) {
 //        int[] random = SortUtils.random(10);
-        int[] sort = sort(SortUtils.getNums(15, true));
+        int[] sort = sort(SortUtils.getNums(6, true));
+        System.out.println("\n-----排序结果-----");
         for (int i = 0; i < sort.length; i++) {
             System.out.println(sort[i]);
         }
@@ -26,13 +27,17 @@ public class Merge {
 //        }
     }
 
+    /**
+     * @param nums
+     * @return
+     */
     public static int[] sort(int[] nums) {
 
 
         auxiliary = new int[nums.length];
         // 创建辅助函数
         // 1,2,3,4,5,6,7,8,9,10
-        int[] sort = doSort(nums, 0, nums.length - 1, 0);
+        int[] sort = doSort(nums, 0, nums.length - 1, 0, 0);
         return sort;
     }
 
@@ -139,33 +144,37 @@ public class Merge {
      * @param high
      * @return
      */
-    private static int[] doSort(int[] nums, int lower, int high, int flag) {
-        show(nums, lower, high, flag);
+    private static int[] doSort(int[] nums, int lower, int high, int flag, int count) {
+        show(nums, lower, high, flag, count);
+        count++;
+
         if (high <= lower) {
             return nums;
         }
-
         int mid = lower + (high - lower) / 2;
         // doSort方法的作用是，控制merge 方法调用的正确顺序
         // 排序 mid 左边的数据
-        doSort(nums, lower, mid, 1);
+        doSort(nums, lower, mid, 1, count);
         // 排序 mid 右边的数据
-        doSort(nums, mid + 1, high, 2);
+        doSort(nums, mid + 1, high, 2, count);
 
-        int[] numsSorted = merge(nums, lower, mid, high, flag);
+        int[] numsSorted = merge(nums, lower, mid, high, flag, count);
 
         return numsSorted;
     }
 
     /**
-     * @param nums  = [4,5,6,1,2,3]
+     *
+     * @param nums
      * @param lower
      * @param mid
      * @param high
+     * @param flag 为了输出打印，标记是左排序，右排序
+     * @param count 为了打印递归调用栈，格式化输出 \t 计数
      * @return
      */
-    private static int[] merge(int[] nums, int lower, int mid, int high, int flag) {
-        showMerge(nums, lower, mid, high, flag);
+    private static int[] merge(int[] nums, int lower, int mid, int high, int flag, int count) {
+        showMerge(nums, lower, mid, high, flag, count);
         int left = lower;
         //
         int right = mid + 1;
@@ -189,26 +198,39 @@ public class Merge {
                 nums[i] = auxiliary[left++];
             }
         }
+        System.out.printf(getFormat(count) + "nums = %s\n", Arrays.toString(nums));
         return nums;
     }
 
-    private static void show(int[] nums, int lower, int high, int flag) {
+    private static String getFormat(int count) {
+        String f = "";
+        if (count != 0) {
+            for (int i = 0; i < count; i++) {
+                f += "\t";
+            }
+        }
+        return f;
+    }
+
+    private static void show(int[] nums, int lower, int high, int flag, int count) {
+        String f = getFormat(count);
         if (flag == 1) {
-            System.out.printf("左排序 doSort(%s, %d, %d)\n", Arrays.toString(nums), lower, high);
+            System.out.printf(f + "左排序 doSort(%s, %d, %d)\n", Arrays.toString(nums), lower, high);
         } else if (flag == 2) {
-            System.out.printf("右排序 doSort(%s, %d, %d)\n", Arrays.toString(nums), lower, high);
+            System.out.printf(f + "右排序 doSort(%s, %d, %d)\n", Arrays.toString(nums), lower, high);
         } else {
             System.out.printf("排序开始 doSort(%s, %d, %d)\n", Arrays.toString(nums), lower, high);
         }
     }
 
-    private static void showMerge(int[] nums, int lower, int mid, int high, int flag) {
+    private static void showMerge(int[] nums, int lower, int mid, int high, int flag, int count) {
+        String f = getFormat(count);
         if (flag == 1) {
-            System.out.printf("左排序 merge(%s, %d, %d, %d)\n", Arrays.toString(nums), lower, mid, high);
+            System.out.printf(f + "左排序 merge(%s, %d, %d, %d)\n", Arrays.toString(nums), lower, mid, high);
         } else if (flag == 2) {
-            System.out.printf("右排序 merge(%s, %d, %d, %d)\n", Arrays.toString(nums), lower, mid, high);
+            System.out.printf(f + "右排序 merge(%s, %d, %d, %d)\n", Arrays.toString(nums), lower, mid, high);
         } else {
-            System.out.printf("排序开始 merge(%s, %d, %d, %d)\n", Arrays.toString(nums), lower, mid, high);
+            System.out.printf("排序结束 merge(%s, %d, %d, %d)\n", Arrays.toString(nums), lower, mid, high);
         }
     }
 
