@@ -2,7 +2,7 @@ package com.guagua.link;
 
 /**
  * 单链表
- * todo 待完善
+ *
  * @author guagua
  * @date 2023/2/21 14:24
  * @describe
@@ -17,18 +17,27 @@ public class LinearDemo {
         linear.add(4);
 
         System.out.println(linear);
-//        linear.print();
 
+        linear.delete(2);
+        System.out.println(linear);
 
+        linear.add(5);
+        System.out.println(linear);
+
+        System.out.println(linear.getFirst().value);
+
+        System.out.println(linear.getLast().value);
+
+        System.out.println("size=" + linear.getSize());
 
     }
 
 
     static class Linear {
 
-        Node first;
+        private Node first;
 
-//        Node last;
+        private int size;
 
         /**
          * 添加
@@ -39,24 +48,43 @@ public class LinearDemo {
             Node newNode = new Node(value);
             if (first == null) {
                 first = newNode;
+                size++;
                 return;
-//                last = first;
             }
-//            else {
-//                if (last != null) {
-//                    last.next = node;
-//                }
-//            }
+
             Node tmp = first;
-            while (tmp.next != null) {
-
+            while (true) {
+                if (tmp.next == null) {
+                    tmp.next = newNode;
+                    size++;
+                    break;
+                } else {
+                    tmp = tmp.next;
+                }
             }
-
         }
 
-//        public Node getLast() {
-//            return last;
-//        }
+        public Integer getSize() {
+            return size;
+        }
+
+        public Node getFirst() {
+            return first;
+        }
+
+        public Node getLast() {
+            if (first == null) {
+                return null;
+            }
+            Node tmp = first;
+            while (true) {
+                if (tmp.next == null) {
+                    return tmp;
+                } else {
+                    tmp = tmp.next;
+                }
+            }
+        }
 
         public void print() {
             if (first != null) {
@@ -80,12 +108,15 @@ public class LinearDemo {
             }
             if (first.value == value) {
                 first = first.next;
+                size--;
                 return;
             }
             Node tmp = first;
             while (tmp.next != null) {
+
                 if (tmp.next.value == value) {
                     tmp.next = tmp.next.next;
+                    size--;
                     break;
                 }
             }

@@ -251,13 +251,13 @@ public class IntSort {
      * 1、第一次循环：初始条件 i = 1，j = i = 1, nums[j] = 4, nums[j-1] = 5, nums[j] < nums[j -1] 即 4 < 5，交换4和5的位置
      * nums[0] = 4, nums[1] = 5, j-- = 0 不满足内层循环条件，内层循环结束;
      *      todo 此时 nums 如下：
-     *      nums[0] = 4, nums[1] = 5, nums[2] = 3, nums[3] = 1, nums[4] = 1; ToDo 4 和 5 排序好了
+     *      nums[0] = 4, nums[1] = 5, nums[2] = 3, nums[3] = 2, nums[4] = 1; ToDo 4 和 5 排序好了
      *  2、第二次 外 循环：初始条件为 i = 2， j = i = 2, nums[j] = 3, nums[j - 1] = 5, nums[j] < nums[j -1] 即 3 < 5，交换3和5的位置
      *      todo 此时 nums 如下：
-     *      nums[0] = 4, nums[1] = 3, nums[2] = 5, nums[3] = 1, nums[4] = 1; ToDo 将数字 3 插入 到已经排序好的 4 和 5 中间
+     *      nums[0] = 4, nums[1] = 3, nums[2] = 5, nums[3] = 2, nums[4] = 1; ToDo 将数字 3 插入 到已经排序好的 4 和 5 中间
      *      内循环进行第二轮操作：j-- 后，j = 1, nums[j] = 3， nums[j - 1] = 4, nums[j] < nums[j -1]， 即 3 < 4， 交换3和4的位置
      *      ToDo 此时 nums 如下：
-     *      nums[0] = 3, nums[1] = 4, nums[2] = 5, nums[3] = 1, nums[4] = 1; ToDo 将数字 3 插入到索引 0 的位置
+     *      nums[0] = 3, nums[1] = 4, nums[2] = 5, nums[3] = 2, nums[4] = 1; ToDo 将数字 3 插入到索引 0 的位置
      *  ...继续内外层循环直到 i = n - 1 到达数组的最后一位，所有数字都排好序
      * <p>
      * 插入排序对部分已经排好序的数组进行排序会很快
