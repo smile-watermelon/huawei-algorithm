@@ -71,6 +71,9 @@ public class LRUCache {
 
     private Node last;
 
+    /**
+     * 这里增加了一个缓存来达到O(1)的时间复杂度，用空间换时间。
+     */
     private Map<Integer, Node> cache = new HashMap<>();
 
     private Integer capacity;
