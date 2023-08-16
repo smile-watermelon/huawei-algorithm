@@ -106,14 +106,15 @@ public class LinearDemo {
             if (first == null) {
                 return;
             }
-            if (first.value == value) {
-                first = first.next;
+            Node tmp = first;
+            if (tmp.value == value) {
+                first = tmp.next;
+                // GC 回收
+                tmp.next = null;
                 size--;
                 return;
             }
-            Node tmp = first;
             while (tmp.next != null) {
-
                 if (tmp.next.value == value) {
                     tmp.next = tmp.next.next;
                     size--;
