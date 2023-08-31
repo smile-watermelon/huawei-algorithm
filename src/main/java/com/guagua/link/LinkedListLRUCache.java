@@ -1,5 +1,7 @@
 package com.guagua.link;
 
+import sun.misc.LRUCache;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,11 +21,11 @@ import java.util.Map;
  * <p>
  * 函数 get 和 put 必须以 O(1) 的平均时间复杂度运行。
  */
-public class LRUCache {
+public class LinkedListLRUCache {
 
 
     public static void main(String[] args) {
-        LRUCache lruCache = new LRUCache(3);
+        LinkedListLRUCache lruCache = new LinkedListLRUCache(3);
 
         lruCache.put(1, 1);
         lruCache.put(2, 2);
@@ -84,7 +86,7 @@ public class LRUCache {
         return size;
     }
 
-    public LRUCache(Integer capacity) {
+    public LinkedListLRUCache(Integer capacity) {
         this.capacity = capacity;
     }
 
