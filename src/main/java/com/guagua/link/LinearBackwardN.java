@@ -35,7 +35,7 @@ public class LinearBackwardN {
         linear.addNode(node5);
 
         int size = linear.size;
-        // 求倒数第2个节点
+        // 求倒数第n个节点
         int n = 1;
 
         /********* 算法如下 ***********/
