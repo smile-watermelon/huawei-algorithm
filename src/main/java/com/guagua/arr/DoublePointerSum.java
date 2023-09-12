@@ -1,8 +1,8 @@
 package com.guagua.arr;
 
 /**
- * @类名: 双指针使用例子
- * @描述: DoublePointerDemo
+ * @类名: DoublePointerDemo
+ * @描述: 双指针求两数之和
  * @作者: Mabin
  * @版本: 1.0
  * @创建时间: 2023/8/30 17:25
@@ -10,7 +10,7 @@ package com.guagua.arr;
  * 时间    修改人   修改原因  修改内容
  * XXX     XXXX      XXXXX    源文件那个方法的那个代码块
  */
-public class DoublePointerDemo {
+public class DoublePointerSum {
 
     public static void main(String[] args) {
         int n = 5;
